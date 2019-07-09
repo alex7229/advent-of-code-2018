@@ -3,7 +3,6 @@
 require_once('vendor/autoload.php');
 
 
-
 if (!isset($argv[1])) {
     throw new Exception('first argument should be day (for example, 1)');
 }
@@ -25,6 +24,9 @@ if ($day === '1' && $part === '2') {
 }
 if ($day === '2' && $part === '1') {
     $solver = new \App\Days\Day02\Part1();
+}
+if ($day === '2' && $part === '2') {
+    $solver = new \App\Days\Day02\Part2();
 }
 
 if (is_null($solver)) {

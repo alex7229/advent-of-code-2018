@@ -7,25 +7,27 @@ use App\Days\Solver;
 class Part1 extends Solver
 {
 
-    private $rows = [];
+    protected $rows = [];
 
     function __construct()
     {
         $this->readFile('/Day02/input.txt');
     }
 
-    private function parseRows() {
+    protected function parseRows()
+    {
         $this->rows = explode("\n", $this->file);
     }
 
-    private function isWordValid(string $word, int $occurringTimes): bool  {
+    private function isWordValid(string $word, int $occurringTimes): bool
+    {
         $letters = [];
-        for ($i = 97; $i<= 122; $i++) {
+        for ($i = 97; $i <= 122; $i++) {
             $letters[chr($i)] = 0;
         }
         for ($i = 0; $i < strlen($word); $i++) {
             $letter = $word[$i];
-            $letters[$letter] ++;
+            $letters[$letter]++;
         }
         return array_search($occurringTimes, $letters);
     }
