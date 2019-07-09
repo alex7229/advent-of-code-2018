@@ -18,10 +18,13 @@ $part = $argv[2];
 $solver = null;
 
 if ($day === '1' && $part === '1') {
-    $solver = new \App\Days\Day1Part1();
+    $solver = new \App\Days\Day01\Part1();
 }
 if ($day === '1' && $part === '2') {
-    $solver = new \App\Days\Day1Part2();
+    $solver = new \App\Days\Day01\Part2();
+}
+if ($day === '2' && $part === '1') {
+    $solver = new \App\Days\Day02\Part1();
 }
 
 if (is_null($solver)) {

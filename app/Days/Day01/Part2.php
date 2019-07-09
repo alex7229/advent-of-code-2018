@@ -1,19 +1,24 @@
 <?php
 
 
-namespace App\Days;
+namespace App\Days\Day01;
 
 
-class Day1Part2 extends Day1Part1
+class Part2 extends Part1
 {
     private $usedFrequencies = [];
+
+    function __construct()
+    {
+        $this->readFile('/Day01/input.txt');
+    }
 
     private function isFrequencyAlreadyUsed(): bool {
         return in_array($this->frequency, $this->usedFrequencies);
     }
 
-    public function solve(): int {
-        $this->readFile();
+    public function solve(): string
+    {
         $this->parseFile();
         while (true) {
             foreach ($this->frequencies as $frequency) {

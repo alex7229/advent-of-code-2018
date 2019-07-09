@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Days;
+namespace App\Days\Day01;
 
+use App\Days\Solver;
 
-class Day1Part1
+class Part1 extends Solver
 {
 
-    private $file = '';
     protected $frequencies = [];
     protected $frequency = 0;
 
-
-    protected function readFile()
+    function __construct()
     {
-        $this->file = file_get_contents(__DIR__ . '/input.txt', true);
+        $this->readFile('/Day01/input.txt');
     }
 
     protected function parseFile()
@@ -32,8 +31,8 @@ class Day1Part1
         }
     }
 
-    public function solve(): int {
-        $this->readFile();
+    public function solve(): string
+    {
         $this->parseFile();
         $this->calculateFrequency();
         return $this->frequency;
