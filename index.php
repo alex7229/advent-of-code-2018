@@ -2,7 +2,6 @@
 
 require_once('vendor/autoload.php');
 
-use App\Days\Day1Part1;
 
 
 if (!isset($argv[1])) {
@@ -16,10 +15,18 @@ if (!isset($argv[2])) {
 $day = $argv[1];
 $part = $argv[2];
 
+$solver = null;
+
 if ($day === '1' && $part === '1') {
-    $solver = new Day1Part1();
-    echo $solver->frequency . "\n";
-    return;
+    $solver = new \App\Days\Day1Part1();
+}
+if ($day === '1' && $part === '2') {
+    $solver = new \App\Days\Day1Part2();
 }
 
-throw new Exception('Day or part is not implemented or input is not valid');
+if (is_null($solver)) {
+    throw new Exception('Day or part is not implemented or input is not valid');
+}
+
+echo $solver->solve();
+echo "\n";

@@ -1,4 +1,4 @@
 .idea
-app/**/*.txt
+app/**/input.txt
 composer.phar
 /vendor/
