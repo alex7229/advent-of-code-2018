@@ -15,6 +15,13 @@ class Part1 extends Solver
         $this->readFile('/Day01/input.txt');
     }
 
+    public function solve(): string
+    {
+        $this->parseFile();
+        $this->calculateFrequency();
+        return $this->frequency;
+    }
+
     protected function parseFile()
     {
         $rows = explode("\n", $this->file);
@@ -29,13 +36,6 @@ class Part1 extends Solver
         foreach ($this->frequencies as $frequency) {
             $this->frequency += $frequency;
         }
-    }
-
-    public function solve(): string
-    {
-        $this->parseFile();
-        $this->calculateFrequency();
-        return $this->frequency;
     }
 }
 

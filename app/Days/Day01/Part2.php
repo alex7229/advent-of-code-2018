@@ -13,10 +13,6 @@ class Part2 extends Part1
         $this->readFile('/Day01/input.txt');
     }
 
-    private function isFrequencyAlreadyUsed(): bool {
-        return in_array($this->frequency, $this->usedFrequencies);
-    }
-
     public function solve(): string
     {
         $this->parseFile();
@@ -30,6 +26,11 @@ class Part2 extends Part1
             }
         }
         return $this->frequency;
+    }
+
+    private function isFrequencyAlreadyUsed(): bool
+    {
+        return in_array($this->frequency, $this->usedFrequencies);
     }
 
 }
