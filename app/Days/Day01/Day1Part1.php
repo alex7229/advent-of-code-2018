@@ -1,11 +1,15 @@
 <?php
 
-class PartOneSolver
+namespace App\Days;
+
+
+class Day1Part1
 {
 
     private $file = '';
-    private $frequencies = [];
-    private $frequency = 0;
+    public $frequencies = [];
+    public $frequency = 0;
+
 
     function __construct()
     {
@@ -35,14 +39,5 @@ class PartOneSolver
         }
     }
 
-    public function getFrequency(): int
-    {
-        return $this->frequency;
-    }
-
 }
 
-$solver = new PartOneSolver();
-
-echo($solver->getFrequency());
-echo "\n";
