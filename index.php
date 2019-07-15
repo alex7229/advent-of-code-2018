@@ -31,6 +31,10 @@ if ($day === '2' && $part === '2') {
 if ($day === '3' && $part === '1') {
     $solver = new \App\Days\Day03\Part1();
 }
+if ($day === '4' && $part === '1') {
+    $solver = new \App\Days\Day04\Part1();
+}
+
 
 if (is_null($solver)) {
     throw new Exception('Day or part is not implemented or input is not valid');
