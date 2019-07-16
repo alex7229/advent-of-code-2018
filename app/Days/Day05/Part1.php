@@ -25,6 +25,8 @@ class Part1 extends Solver
         // all of the pieces are glued back together
         // procedure is repeated once more, but dividing into 1000 long pieces (numbers are guessed)
         // polymer is processed one more time
+
+        // it is possible to make it even more faster by splitting the polymer recursively
         $chunks = explode(",", chunk_split($polymerInput, 100, ","));
         $chunks = array_map(function ($polymer) {
             $processor = new PolymerProcessor(str_split($polymer));

@@ -40,6 +40,9 @@ if ($day === '4' && $part === '2') {
 if ($day === '5' && $part === '1') {
     $solver = new \App\Days\Day05\Part1();
 }
+if ($day === '5' && $part === '2') {
+    $solver = new \App\Days\Day05\Part2();
+}
 
 
 if (is_null($solver)) {
