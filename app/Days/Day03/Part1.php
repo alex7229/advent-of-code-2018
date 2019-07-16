@@ -85,7 +85,7 @@ class Part1 extends Solver
         for ($row = 0; $row < $this->height; $row++) {
             for ($column = 0; $column < $this->width; $column++) {
                 if ($this->field[$row][$column] > 1) {
-                    echo "row is " . $row  . " and column is " . $column . "\n";
+                    echo "row is " . $row . " and column is " . $column . "\n";
                     $overlapped++;
                 }
             }

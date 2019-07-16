@@ -14,6 +14,22 @@ class Part1 extends Solver
         $this->readFile('/Day02/input.txt');
     }
 
+    public function solve(): string
+    {
+        $this->parseRows();
+        $doubles = 0;
+        $triples = 0;
+        foreach ($this->rows as $row) {
+            if ($this->isWordValid($row, 2)) {
+                $doubles++;
+            }
+            if ($this->isWordValid($row, 3)) {
+                $triples++;
+            }
+        }
+        return strval($doubles * $triples);
+    }
+
     protected function parseRows()
     {
         $this->rows = explode("\n", $this->file);
@@ -30,22 +46,6 @@ class Part1 extends Solver
             $letters[$letter]++;
         }
         return array_search($occurringTimes, $letters);
-    }
-
-    public function solve(): string
-    {
-        $this->parseRows();
-        $doubles = 0;
-        $triples = 0;
-        foreach ($this->rows as $row) {
-            if ($this->isWordValid($row, 2)) {
-                $doubles++;
-            }
-            if ($this->isWordValid($row, 3)) {
-                $triples++;
-            }
-        }
-        return strval($doubles * $triples);
     }
 
 

@@ -8,12 +8,12 @@ use Carbon\Carbon;
 class Part1 extends Solver
 {
 
-    private $events = [];
+    protected $sleepMinutes = [];
 
     // array of minutes with guard ids, e.g.
     // [12, 25], [12, 52,52], where first array is 0 minute, second - 1-st minute
     // 12, 25, 52 - guard ids
-    private $sleepMinutes = [];
+    private $events = [];
     // array id is guard id, value -> sleptMinutes
     private $allGuards = [];
 
@@ -32,7 +32,7 @@ class Part1 extends Solver
         return strval($theSleepiestMinute * $theSleepiestGuard);
     }
 
-    private function parseRows()
+    protected function parseRows()
     {
         $regExp = "/\[([^]]*)] (falls asleep|wakes up|Guard #(\d*) begins shift)/";
         $matches = [];
@@ -49,7 +49,8 @@ class Part1 extends Solver
         });
     }
 
-    private function writeGuardsSchedule() {
+    protected function writeGuardsSchedule()
+    {
         $latestTime = $this->events[sizeof($this->events) - 1]['timestamp'];
 
         $nextEventIndex = 1;
@@ -93,7 +94,8 @@ class Part1 extends Solver
         ksort($this->sleepMinutes);
     }
 
-    private function findTheSleepSchedule() {
+    protected function findTheSleepSchedule()
+    {
         foreach ($this->sleepMinutes as $currentMinute) {
             foreach ($currentMinute as $guardId) {
                 if (!isset($this->allGuards[$guardId])) {
@@ -104,7 +106,8 @@ class Part1 extends Solver
         }
     }
 
-    private function findTheSleepiestMinute(int $guardId) {
+    private function findTheSleepiestMinute(int $guardId)
+    {
         $sleptData = [
             'sleepiestMinute' => 0,
             'daysAsleep' => 0
@@ -123,7 +126,6 @@ class Part1 extends Solver
         }
         return $sleptData['sleepiestMinute'];
     }
-
 
 
 }
