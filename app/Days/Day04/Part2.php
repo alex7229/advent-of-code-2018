@@ -26,7 +26,6 @@ class Part2 extends Part1
         ];
 
         foreach ($this->sleepMinutes as $minute=>$guardIds) {
-            echo "current minute is " . $minute . "\n";
 
             // indices are guard ids, values => minutes asleep
             $guardsSleepTime = [];
