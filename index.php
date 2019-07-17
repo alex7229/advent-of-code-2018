@@ -43,7 +43,9 @@ if ($day === '5' && $part === '1') {
 if ($day === '5' && $part === '2') {
     $solver = new \App\Days\Day05\Part2();
 }
-
+if ($day === '6' && $part === '1') {
+    $solver = new \App\Days\Day06\Part1();
+}
 
 if (is_null($solver)) {
     throw new Exception('Day or part is not implemented or input is not valid');
