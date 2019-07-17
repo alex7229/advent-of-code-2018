@@ -7,9 +7,9 @@ use App\Days\Solver;
 class Part1 extends Solver
 {
 
-    private $points = [];
-    private $lastColumn = 0;
-    private $lastRow = 0;
+    protected $points = [];
+    protected $lastColumn = 0;
+    protected $lastRow = 0;
 
 
     function __construct()
@@ -46,8 +46,6 @@ class Part1 extends Solver
 
     public function solve(): string
     {
-        $this->parsePoints();
-        $this->findFieldCoordinates();
         $this->calculateArea();
         return $this->findLargestArea();
     }
@@ -94,7 +92,7 @@ class Part1 extends Solver
         return $closestIndex;
     }
 
-    private function getDistance(int $firstPointRow, int $firstPointColumn, int $secondPointRow, int $secondPointColumn): int
+    protected function getDistance(int $firstPointRow, int $firstPointColumn, int $secondPointRow, int $secondPointColumn): int
     {
         return abs($firstPointRow - $secondPointRow) + abs($firstPointColumn - $secondPointColumn);
     }
