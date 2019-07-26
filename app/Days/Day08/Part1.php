@@ -9,7 +9,7 @@ class Part1 extends Solver
 
     const HEADER_LENGTH = 2;
 
-    private $entries = [];
+    protected $entries = [];
     // node structure =>
     //   child nodes number
     //   entries number
@@ -17,7 +17,7 @@ class Part1 extends Solver
     //   child nodes array
     //   length of the node itself
     //   all other entries without header (all entries and child nodes)
-    private $tree = [];
+    protected $tree = [];
 
 
     function __construct()
@@ -40,7 +40,7 @@ class Part1 extends Solver
         }, $this->entries);
     }
 
-    private function parseNodeTree(array $entries, int $nodesOnLevel): array
+    protected function parseNodeTree(array $entries, int $nodesOnLevel): array
     {
         $nodes = [];
         $previousNodeFinishIndex = 0;
