@@ -9,9 +9,9 @@ class Part1 extends Solver
 {
 
     // indices -> steps letters, values => steps prerequisites (as concatenated string)
-    private $steps = [];
-    private $unblockedSteps = [];
-    private $usedSteps = '';
+    protected $steps = [];
+    protected $unblockedSteps = [];
+    protected $usedSteps = '';
 
     function __construct()
     {
@@ -28,7 +28,7 @@ class Part1 extends Solver
         return $this->usedSteps;
     }
 
-    private function parseSteps()
+    protected function parseSteps()
     {
         $regExp = '/Step (\w) must be finished before step (\w) can begin./';
         $matches = [];
