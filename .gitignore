@@ -4,3 +4,4 @@ composer.phar
 laravel/vendor/
 
 node/node_modules
+node/dist/**/*.js
