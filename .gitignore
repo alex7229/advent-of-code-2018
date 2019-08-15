@@ -1,4 +1,4 @@
 .idea
-app/**/input.txt
+laravel/app/**/input.txt
 composer.phar
-/vendor/
+laravel/vendor/
