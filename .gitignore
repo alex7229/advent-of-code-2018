@@ -7,3 +7,4 @@ laravel/vendor/
 node/node_modules
 node/dist/**/*.js
 node/**/input.txt
+fileAnswer.txt
