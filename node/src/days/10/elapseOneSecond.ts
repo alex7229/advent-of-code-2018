@@ -1,6 +1,6 @@
 import { Point } from "./parseLightPoints";
 
-type ElapseOneSecond = (points: Point[]) => Point[];
+export type ElapseOneSecond = (points: Point[]) => Point[];
 
 const elapseOneSecond: ElapseOneSecond = points =>
   points.map(point => {

@@ -1,15 +1,17 @@
 import parseLightPoints from "./parseLightPoints";
-import elapseOneSecond from "./elapseOneSecond";
+import elapseOneSecond, { ElapseOneSecond } from "./elapseOneSecond";
 import findFieldArea from "./findFieldArea";
 import drawPoints from "./drawPoints";
 
-type Solve = (input: string) => string;
+type SolveFactory = (
+  elapseOneSecond: ElapseOneSecond
+) => (input: string) => string;
 
-const solve: Solve = input => {
+export const solveFactory: SolveFactory = elapseOneSecondFunc => input => {
   let previousPoints = parseLightPoints(input);
   let previousArea = findFieldArea(previousPoints);
 
-  let currentPoints = elapseOneSecond(previousPoints);
+  let currentPoints = elapseOneSecondFunc(previousPoints);
   let currentArea = findFieldArea(currentPoints);
 
   while (currentArea < previousArea) {
@@ -18,7 +20,7 @@ const solve: Solve = input => {
     previousPoints = currentPoints;
     previousArea = currentArea;
 
-    currentPoints = elapseOneSecond(previousPoints);
+    currentPoints = elapseOneSecondFunc(previousPoints);
     currentArea = findFieldArea(currentPoints);
   }
 
@@ -27,4 +29,4 @@ const solve: Solve = input => {
   return "check the fileAnswer.txt for the word";
 };
 
-export default solve;
+export default solveFactory(elapseOneSecond);
