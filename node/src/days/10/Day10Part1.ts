@@ -3,9 +3,9 @@ import elapseOneSecond, { ElapseOneSecond } from "./elapseOneSecond";
 import findFieldArea from "./findFieldArea";
 import drawPoints from "./drawPoints";
 
-type SolveFactory = (
-  elapseOneSecond: ElapseOneSecond
-) => (input: string) => string;
+export type Solve = (input: string) => string | number;
+
+type SolveFactory = (elapseOneSecond: ElapseOneSecond) => Solve;
 
 export const solveFactory: SolveFactory = elapseOneSecondFunc => input => {
   let previousPoints = parseLightPoints(input);

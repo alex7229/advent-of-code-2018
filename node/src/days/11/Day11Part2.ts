@@ -1,6 +1,7 @@
 import findBiggestSquare from "./findBiggestSquare";
+import { Solve } from "../10/Day10Part1";
 
-const solve = (input: string): string => {
+const solve: Solve = input => {
   const { topLeftPosition, size } = findBiggestSquare(
     1,
     300,

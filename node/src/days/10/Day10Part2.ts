@@ -1,7 +1,7 @@
 import elapseOneSecond, { ElapseOneSecond } from "./elapseOneSecond";
-import { solveFactory } from "./Day10Part1";
+import { solveFactory, Solve } from "./Day10Part1";
 
-const solve = (input: string) => {
+const solve: Solve = input => {
   let secondsPassed = 0;
   const elapseOneSecondWrapper: ElapseOneSecond = points => {
     secondsPassed += 1;
