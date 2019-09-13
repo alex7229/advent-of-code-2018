@@ -1,11 +1,11 @@
 export type FindTenRecipesScore = (
   recipes: number[],
-  lastNonScoredRecipe: number
+  lastNonScoredRecipe: string
 ) => string;
 
 const findTenRecipesScore: FindTenRecipesScore = (
   recipes,
   lastNonScoredRecipe
-) => recipes.join("").substr(lastNonScoredRecipe, 10);
+) => recipes.join("").substr(parseInt(lastNonScoredRecipe, 10), 10);
 
 export default findTenRecipesScore;

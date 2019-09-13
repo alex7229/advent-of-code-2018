@@ -3,9 +3,9 @@ import cookOneRecipe, { CookOneRecipe } from "./cookOneRecipe";
 export type CookEnoughRecipes = (
   recipes: number[],
   elvesPositions: number[],
-  recipesNumber: number
+  recipesNumber: string
 ) => number[];
-type CookEnoughRecipesFactory = (
+export type CookEnoughRecipesFactory = (
   cookOneRecipe: CookOneRecipe
 ) => CookEnoughRecipes;
 
@@ -17,7 +17,7 @@ export const cookEnoughRecipesFactory: CookEnoughRecipesFactory = cookOneRecipeF
   let currentRecipes = recipes;
   let currentElvesPositions = elvesPositions;
 
-  while (currentRecipes.length < recipesNumber) {
+  while (currentRecipes.length < parseInt(recipesNumber, 10)) {
     const result = cookOneRecipeFunc(currentRecipes, currentElvesPositions);
     currentRecipes = result.recipes;
     currentElvesPositions = result.elvesPositions;

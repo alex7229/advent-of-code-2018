@@ -19,9 +19,12 @@ const solveFactory: SolveFactory = (
   const cookedRecipes = cookEnoughRecipesFunc(
     initialRecipes,
     initialElvesPositions,
-    lastNonScoredRecipePosition + 10
+    (lastNonScoredRecipePosition + 10).toString()
   );
-  return findTenRecipesScoreFunc(cookedRecipes, lastNonScoredRecipePosition);
+  return findTenRecipesScoreFunc(
+    cookedRecipes,
+    lastNonScoredRecipePosition.toString()
+  );
 };
 
 export default solveFactory(cookEnoughRecipes, findTenRecipesScore);

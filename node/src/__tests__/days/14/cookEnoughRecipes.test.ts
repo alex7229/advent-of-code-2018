@@ -12,7 +12,7 @@ it("should cook chocolate until enough recipes are produced", () => {
     cookEnoughRecipesFactory(cookOneRecipeMock)(
       initialRecipes,
       initialPositions,
-      5
+      "5"
     )
   ).toEqual([1, 3, 6, 2, 11]);
   expect(cookOneRecipeMock.mock.calls.length).toBe(3);
