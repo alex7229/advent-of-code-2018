@@ -4,7 +4,7 @@
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
-    "@types/jest": "^24.0.17",
+    "@types/jest": "^24.0.18",
     "@types/lodash": "^4.14.138",
     "@types/node": "^12.7.2",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
@@ -15,15 +15,19 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.1.0",
     "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0",
     "typescript": "^3.5.3"
   },
   "dependencies": {
     "dotenv": "^8.1.0",
+    "jest": "^24.9.0",
     "lodash": "^4.17.15"
   },
   "scripts": {
     "start": "tsc && node ./dist/index.js",
     "start:debug": "tsc && node --inspect-brk ./dist/index.js",
+    "test": "node scripts/test.js -c config/jest/commonConfig.js --colors --watch",
+    "test:debug": "node --inspect-brk scripts/test.js --runInBand -c config/jest/commonConfig.js",
     "lint": "eslint src/**/*.ts"
   }
 }
