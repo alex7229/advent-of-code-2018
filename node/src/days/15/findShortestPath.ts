@@ -9,7 +9,8 @@ type FindShortestPath = (
   battlefield: Battlefield,
   units: Unit[],
   cellsDistance?: CellsDistance,
-  currentPath?: Path
+  currentPath?: Path,
+  lengthLimit?: number
 ) => Path | null;
 
 const findShortestPath: FindShortestPath = (
@@ -18,8 +19,13 @@ const findShortestPath: FindShortestPath = (
   battlefield,
   units,
   cellsDistance,
-  currentPath
+  currentPath,
+  lengthLimit = Number.POSITIVE_INFINITY
 ) => {
+  // todo: use length limit
+  // todo: check if point is reachable directly
+  // todo: divide area on reachable and unreachable islands
+  // todo: search for the closest reachable enemy (heat map with distances)
   if (!cellsDistance || !currentPath) {
     const initialPath = [from];
     const initialDistances = battlefield.map(row =>
