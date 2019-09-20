@@ -175,13 +175,8 @@ it("should find the closest point behind the wall instead of further point that 
   ]);
 });
 
-it.skip("should find the bottom right cell immediately", () => {
+it("should find far away cell immediately", () => {
   // this test checks performance
-  // smart search should be implemented for this test to perform at a reasonable rate
-  // recursion should stop early to prevent unneseccary calculations
-  // currently path that is 13 units long takes 17000 function invocations (500 ms)
-  // 18 -> 450,000 iterations (15 secs)
-  // this one doesn't work at all
   const input = `################################
   #..............................#
   #..............................#
@@ -203,7 +198,7 @@ it.skip("should find the bottom right cell immediately", () => {
   const { battlefield, units } = parseBattlefield(input);
   const path = findShortestPath(
     { row: 1, column: 1 },
-    [{ row: 30, column: 16 }],
+    [{ row: 12, column: 7 }],
     battlefield,
     units
   );
@@ -211,11 +206,50 @@ it.skip("should find the bottom right cell immediately", () => {
     throw new Error("path should be found here");
   }
   expect(path[0]).toEqual({ row: 1, column: 1 });
-  expect(path[15]).toEqual({ row: 1, column: 16 });
-  expect(path[path.length - 1]).toEqual({ row: 30, column: 16 });
-  expect(path.length).toBe(45);
+  expect(path[path.length - 1]).toEqual({ row: 12, column: 7 });
+  expect(path.length).toBe(18);
 });
 
-it.skip("real example test with very long path between points => performance test", () => {
-  //
+it("real example test with very long path between points => performance test", () => {
+  const input = `################################
+##############.#################
+##############...###############
+#..#######G.#....###############
+##.#####.#G....#.###############
+##..###.......##################
+###.####..G.G.##################
+###.##G.......##################
+###.G.....#...G######.##########
+###GGG..#......####E...#########
+###.GG.....########..#..#..#####
+#########.G...G.........#....###
+#########.....#####............#
+########...G.#######.......##..#
+########....#########...#.####.#
+######E#.G..#########.....#....#
+######....E.#########....##...##
+######......#########.....##..##
+######......#########...########
+#..###.......#######.....#######
+#..G##.G......#####..G...#######
+#.........#..E...........#######
+####.......E............########
+####.#..E.G..............#######
+###########..............#######
+###########.............E...####
+##########.................#####
+#########.....................##
+########.......#.#....E....E..##
+###########...............E.####
+##########.....#....#...##.#####
+################################`;
+  const { battlefield, units } = parseBattlefield(input);
+  const firstGoblinPosition = { row: 3, column: 10 };
+  const closestElfForAttackPosition = { row: 16, column: 6 };
+  findShortestPath(
+    firstGoblinPosition,
+    [closestElfForAttackPosition],
+    battlefield,
+    units
+  );
 });
