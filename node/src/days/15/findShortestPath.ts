@@ -76,18 +76,23 @@ const findShortestPath: FindShortestPath = (
   if (currentPath.length > lengthLimit + 1) {
     return null;
   }
+  let currentLengthLimit = lengthLimit;
   const possiblePaths = adjustedCells
-    .map(cell =>
-      findShortestPath(
+    .map(cell => {
+      const path = findShortestPath(
         from,
         destinations,
         battlefield,
         units,
         cellsDistance,
         [...currentPath, cell],
-        lengthLimit
-      )
-    )
+        currentLengthLimit
+      );
+      if (path && path.length - 1 < currentLengthLimit) {
+        currentLengthLimit = path.length - 1;
+      }
+      return path;
+    })
     // cast is used because typescript for now cannot infer that null paths are filtered out
     .filter(path => path !== null) as Position[][];
   if (possiblePaths.length === 0) {

@@ -130,7 +130,7 @@ it("should find the shortest path to one of the multiple destinations", () => {
   ]);
 });
 
-it.skip("should find the closest point behind the wall instead of further point that is in clear view", () => {
+it("should find the closest point behind the wall instead of further point that is in clear view", () => {
   const input = `##################
   #..E...#.........#
   #.......#G.......#
@@ -173,6 +173,38 @@ it.skip("should find the closest point behind the wall instead of further point 
     { row: 3, column: 10 },
     { row: 2, column: 10 }
   ]);
+});
+
+it.skip("should find the bottom right cell immediately", () => {
+  // this test checks performance
+  // by default search engine goes up and down from the left side to the right
+  // somewhat smart search should be implemented for this test to perform at a reasonable rate
+  const input = `################################
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  #..............................#
+  ################################`;
+  const { battlefield, units } = parseBattlefield(input);
+  const path = findShortestPath({ row: 1, column: 1 }, [], battlefield, units);
+  if (!path) {
+    throw new Error("path should be found here");
+  }
+  expect(path[0]).toEqual({ row: 1, column: 1 });
+  expect(path[path.length - 1]).toEqual({ row: 30, column: 16 });
+  expect(path.length).toBe(45);
 });
 
 it.skip("real example test with very long path between points => performance test", () => {
