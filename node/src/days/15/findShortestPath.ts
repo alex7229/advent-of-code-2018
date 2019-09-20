@@ -22,10 +22,10 @@ const findShortestPath: FindShortestPath = (
   currentPath,
   lengthLimit = Number.POSITIVE_INFINITY
 ) => {
-  // todo: use length limit
-  // todo: check if point is reachable directly
-  // todo: divide area on reachable and unreachable islands
-  // todo: search for the closest reachable enemy (heat map with distances)
+  // todo: implement search multiple destinations
+  // todo: adjusted cells should be sorted from the closest cell to the possible destination
+  // to the farthest ones
+  // this way algo will try to search in the right direction first
   if (!cellsDistance || !currentPath) {
     const initialPath = [from];
     const initialDistances = battlefield.map(row =>
@@ -38,7 +38,8 @@ const findShortestPath: FindShortestPath = (
       battlefield,
       units,
       initialDistances,
-      initialPath
+      initialPath,
+      lengthLimit
     );
   }
   const lastCell = currentPath[currentPath.length - 1];
@@ -63,16 +64,26 @@ const findShortestPath: FindShortestPath = (
   }
   adjustedCells.forEach(adjustedCell => {
     // mark the distance for those cells
-    // is it mutated; otherwise, it'll slown down the process significantly
+    // is it mutated; otherwise, it'll slow down the process significantly
     // eslint-disable-next-line no-param-reassign
     cellsDistance[adjustedCell.row][adjustedCell.column] = currentPath.length;
   });
+  // length limit +1 is used here
+  // because current path that consists of two points is actually 1 distance long
+  if (currentPath.length > lengthLimit + 1) {
+    return null;
+  }
   const possiblePaths = adjustedCells
     .map(cell =>
-      findShortestPath(from, to, battlefield, units, cellsDistance, [
-        ...currentPath,
-        cell
-      ])
+      findShortestPath(
+        from,
+        to,
+        battlefield,
+        units,
+        cellsDistance,
+        [...currentPath, cell],
+        lengthLimit
+      )
     )
     // cast is used because typescript for now cannot infer that null paths are filtered out
     .filter(path => path !== null) as Position[][];
