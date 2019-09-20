@@ -12,7 +12,7 @@ it("should find the shortest paths correctly without any obstacles", () => {
   const { battlefield } = parseBattlefield(input);
   const start = { row: 0, column: 0 };
   const end = { row: 2, column: 2 };
-  expect(findShortestPath(start, end, battlefield, [])).toEqual([
+  expect(findShortestPath(start, [end], battlefield, [])).toEqual([
     { row: 0, column: 0 },
     { row: 0, column: 1 },
     { row: 0, column: 2 },
@@ -31,27 +31,27 @@ it("should find the paths for the adjusted cells for all the goblins from the ex
   const start = { row: 1, column: 1 };
   // end point is to the left from the top goblin
   expect(
-    findShortestPath(start, { row: 1, column: 3 }, battlefield, units)
+    findShortestPath(start, [{ row: 1, column: 3 }], battlefield, units)
   ).toEqual([start, { row: 1, column: 2 }, { row: 1, column: 3 }]);
   // end point is to the right of the top goblin (unreachable)
   expect(
-    findShortestPath(start, { row: 1, column: 5 }, battlefield, units)
+    findShortestPath(start, [{ row: 1, column: 5 }], battlefield, units)
   ).toEqual(null);
   // end point is to the top of the bottom-left goblin
   expect(
-    findShortestPath(start, { row: 2, column: 2 }, battlefield, units)
+    findShortestPath(start, [{ row: 2, column: 2 }], battlefield, units)
   ).toEqual([start, { row: 1, column: 2 }, { row: 2, column: 2 }]);
   // end point is to the top of the bottom-right goblin (unreachable)
   expect(
-    findShortestPath(start, { row: 2, column: 5 }, battlefield, units)
+    findShortestPath(start, [{ row: 2, column: 5 }], battlefield, units)
   ).toEqual(null);
   // end point is to the left from the bottom-left goblin
   expect(
-    findShortestPath(start, { row: 3, column: 1 }, battlefield, units)
+    findShortestPath(start, [{ row: 3, column: 1 }], battlefield, units)
   ).toEqual([start, { row: 2, column: 1 }, { row: 3, column: 1 }]);
   // end point is to the right from the bottom-left goblin
   expect(
-    findShortestPath(start, { row: 3, column: 3 }, battlefield, units)
+    findShortestPath(start, [{ row: 3, column: 3 }], battlefield, units)
   ).toEqual([
     start,
     { row: 1, column: 2 },
@@ -62,7 +62,7 @@ it("should find the paths for the adjusted cells for all the goblins from the ex
 });
 
 it("should utilize length limit properly", () => {
-  // this tests ensures that point which is close enough would be found fast enough
+  // this test ensures that point which is close enough would be found fast enough
   // even though the algo starts looking for the point in the wrong direction
   // length limit 'limits' recursion depth buy ignoring very long paths
   const input = `################################
@@ -92,7 +92,7 @@ it("should utilize length limit properly", () => {
   expect(
     findShortestPath(
       { row: 1, column: 10 },
-      { row: 1, column: 13 },
+      [{ row: 1, column: 13 }],
       battlefield,
       units,
       undefined,
@@ -105,4 +105,76 @@ it("should utilize length limit properly", () => {
     { row: 1, column: 12 },
     { row: 1, column: 13 }
   ]);
+});
+
+it("should find the shortest path to one of the multiple destinations", () => {
+  const input = ` ######
+  #....#
+  #....#
+  #....#
+  ######`;
+  const { battlefield, units } = parseBattlefield(input);
+  expect(
+    findShortestPath(
+      { row: 1, column: 1 },
+      [{ row: 3, column: 4 }, { row: 3, column: 3 }],
+      battlefield,
+      units
+    )
+  ).toEqual([
+    { row: 1, column: 1 },
+    { row: 1, column: 2 },
+    { row: 1, column: 3 },
+    { row: 2, column: 3 },
+    { row: 3, column: 3 }
+  ]);
+});
+
+it.skip("should find the closest point behind the wall instead of further point that is in clear view", () => {
+  const input = `##################
+  #..E...#.........#
+  #.......#G.......#
+  #........#.......#
+  #................#
+  #................#
+  #................#
+  #................#
+  #................#
+  #................#
+  #................#
+  #................#
+  #................#
+  #................#
+  #................#
+  #...G............#
+  ##################`;
+  const { battlefield, units } = parseBattlefield(input);
+  // first point is to the top of the bottom goblin
+  // second point is to the right of the top goblin (closer even behind the wall)
+  expect(
+    findShortestPath(
+      { row: 1, column: 3 },
+      [{ row: 14, column: 4 }, { row: 2, column: 10 }],
+      battlefield,
+      units
+    )
+  ).toEqual([
+    { row: 1, column: 3 },
+    { row: 1, column: 4 },
+    { row: 1, column: 5 },
+    { row: 1, column: 6 },
+    { row: 2, column: 6 },
+    { row: 2, column: 7 },
+    { row: 3, column: 7 },
+    { row: 3, column: 8 },
+    { row: 4, column: 8 },
+    { row: 4, column: 9 },
+    { row: 4, column: 10 },
+    { row: 3, column: 10 },
+    { row: 2, column: 10 }
+  ]);
+});
+
+it.skip("real example test with very long path between points => performance test", () => {
+  //
 });

@@ -5,7 +5,7 @@ import comparePaths, { Path } from "./comparePaths";
 type CellsDistance = number[][];
 type FindShortestPath = (
   from: Position,
-  to: Position,
+  destinations: Position[],
   battlefield: Battlefield,
   units: Unit[],
   cellsDistance?: CellsDistance,
@@ -15,7 +15,7 @@ type FindShortestPath = (
 
 const findShortestPath: FindShortestPath = (
   from,
-  to,
+  destinations,
   battlefield,
   units,
   cellsDistance,
@@ -34,7 +34,7 @@ const findShortestPath: FindShortestPath = (
     initialDistances[from.row][from.column] = 0;
     return findShortestPath(
       from,
-      to,
+      destinations,
       battlefield,
       units,
       initialDistances,
@@ -43,7 +43,10 @@ const findShortestPath: FindShortestPath = (
     );
   }
   const lastCell = currentPath[currentPath.length - 1];
-  if (lastCell.row === to.row && lastCell.column === to.column) {
+  const isFinished = destinations.find(
+    ({ row, column }) => row === lastCell.row && column === lastCell.column
+  );
+  if (isFinished) {
     // reached the destination
     return currentPath;
   }
@@ -77,7 +80,7 @@ const findShortestPath: FindShortestPath = (
     .map(cell =>
       findShortestPath(
         from,
-        to,
+        destinations,
         battlefield,
         units,
         cellsDistance,
