@@ -1,6 +1,7 @@
 import { Battlefield, Unit } from "./parseBattlefield";
 import findAdjustedCells, { Position } from "./findAdjustedCells";
 import comparePaths, { Path } from "./comparePaths";
+import sortAdjustedCellsByPriority from "./sortAdjustedCellsByPriority";
 
 type CellsDistance = number[][];
 type FindShortestPath = (
@@ -77,7 +78,8 @@ const findShortestPath: FindShortestPath = (
     return null;
   }
   let currentLengthLimit = lengthLimit;
-  const possiblePaths = adjustedCells
+  // const possiblePaths = adjustedCells
+  const possiblePaths = sortAdjustedCellsByPriority(adjustedCells, destinations)
     .map(cell => {
       const path = findShortestPath(
         from,

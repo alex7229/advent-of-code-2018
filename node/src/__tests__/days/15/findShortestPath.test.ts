@@ -146,7 +146,7 @@ it("should find the closest point behind the wall instead of further point that 
   #................#
   #................#
   #................#
-  #...G............#
+  #........G.......#
   ##################`;
   const { battlefield, units } = parseBattlefield(input);
   // first point is to the top of the bottom goblin
@@ -154,7 +154,7 @@ it("should find the closest point behind the wall instead of further point that 
   expect(
     findShortestPath(
       { row: 1, column: 3 },
-      [{ row: 14, column: 4 }, { row: 2, column: 10 }],
+      [{ row: 14, column: 9 }, { row: 2, column: 10 }],
       battlefield,
       units
     )
@@ -177,8 +177,11 @@ it("should find the closest point behind the wall instead of further point that 
 
 it.skip("should find the bottom right cell immediately", () => {
   // this test checks performance
-  // by default search engine goes up and down from the left side to the right
-  // somewhat smart search should be implemented for this test to perform at a reasonable rate
+  // smart search should be implemented for this test to perform at a reasonable rate
+  // recursion should stop early to prevent unneseccary calculations
+  // currently path that is 13 units long takes 17000 function invocations (500 ms)
+  // 18 -> 450,000 iterations (15 secs)
+  // this one doesn't work at all
   const input = `################################
   #..............................#
   #..............................#
@@ -198,11 +201,17 @@ it.skip("should find the bottom right cell immediately", () => {
   #..............................#
   ################################`;
   const { battlefield, units } = parseBattlefield(input);
-  const path = findShortestPath({ row: 1, column: 1 }, [], battlefield, units);
+  const path = findShortestPath(
+    { row: 1, column: 1 },
+    [{ row: 30, column: 16 }],
+    battlefield,
+    units
+  );
   if (!path) {
     throw new Error("path should be found here");
   }
   expect(path[0]).toEqual({ row: 1, column: 1 });
+  expect(path[15]).toEqual({ row: 1, column: 16 });
   expect(path[path.length - 1]).toEqual({ row: 30, column: 16 });
   expect(path.length).toBe(45);
 });
