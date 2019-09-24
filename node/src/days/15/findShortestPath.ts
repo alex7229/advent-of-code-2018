@@ -4,7 +4,7 @@ import findShortestPathFromGiven, { Path } from "./findShortestPathFromGiven";
 import sortAdjustedCellsByPriority from "./sortAdjustedCellsByPriority";
 import findMinimumTeoriticalPathLength from "./findMinimumTeoriticalPathLength";
 
-type FindShortestPath = (
+export type FindShortestPath = (
   from: Position,
   destinations: ReadonlyArray<Position>,
   battlefield: Battlefield,

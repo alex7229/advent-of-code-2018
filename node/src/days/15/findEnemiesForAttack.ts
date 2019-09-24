@@ -1,6 +1,6 @@
 import { Unit } from "./parseBattlefield";
 
-type FindEnemiesForAttack = (
+export type FindEnemiesForAttack = (
   currentUnit: Unit,
   units: ReadonlyArray<Unit>
 ) => ReadonlyArray<Unit>;

@@ -2,7 +2,7 @@ import { uniqBy } from "lodash";
 import { Battlefield, Unit } from "./parseBattlefield";
 import findAdjustedCells, { Position } from "./findAdjustedCells";
 
-type FindAllAttackPoints = (
+export type FindAllAttackPoints = (
   battlefield: Battlefield,
   units: ReadonlyArray<Unit>,
   currentUnitType: "elf" | "goblin"
