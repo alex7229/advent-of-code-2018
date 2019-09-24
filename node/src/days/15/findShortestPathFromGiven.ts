@@ -2,9 +2,9 @@ import { cloneDeep } from "lodash";
 import { Position } from "./findAdjustedCells";
 
 export type Path = ReadonlyArray<Position>;
-type ComparePaths = (paths: ReadonlyArray<Path>) => Path;
+type FindShortestPathFromGiven = (paths: ReadonlyArray<Path>) => Path;
 
-const comparePaths: ComparePaths = providedPaths => {
+const findShortestPathFromGiven: FindShortestPathFromGiven = providedPaths => {
   if (providedPaths.length === 0) {
     throw new Error("at least one path should be passed");
   }
@@ -41,4 +41,4 @@ const comparePaths: ComparePaths = providedPaths => {
   return paths[0];
 };
 
-export default comparePaths;
+export default findShortestPathFromGiven;

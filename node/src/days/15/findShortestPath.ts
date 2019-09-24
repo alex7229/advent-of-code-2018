@@ -1,6 +1,6 @@
 import { Battlefield, Unit } from "./parseBattlefield";
 import findAdjustedCells, { Position } from "./findAdjustedCells";
-import comparePaths, { Path } from "./comparePaths";
+import findShortestPathFromGiven, { Path } from "./findShortestPathFromGiven";
 import sortAdjustedCellsByPriority from "./sortAdjustedCellsByPriority";
 import findMinimumTeoriticalPathLength from "./findMinimumTeoriticalPathLength";
 
@@ -23,10 +23,6 @@ const findShortestPath: FindShortestPath = (
   currentPath,
   lengthLimit = Number.POSITIVE_INFINITY
 ) => {
-  // todo: implement search multiple destinations
-  // todo: adjusted cells should be sorted from the closest cell to the possible destination
-  // to the farthest ones
-  // this way algo will try to search in the right direction first
   if (!cellsDistance || !currentPath) {
     const initialPath = [from];
     const initialDistances = battlefield.map(row =>
@@ -108,7 +104,7 @@ const findShortestPath: FindShortestPath = (
   if (possiblePaths.length === 0) {
     return null;
   }
-  return comparePaths(possiblePaths);
+  return findShortestPathFromGiven(possiblePaths);
 };
 
 export default findShortestPath;

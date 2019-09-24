@@ -2,6 +2,7 @@ export type Cell = "wall" | "cavern";
 type Row = ReadonlyArray<Cell>;
 export type Battlefield = ReadonlyArray<Row>;
 export interface Unit {
+  readonly id: number;
   readonly type: "goblin" | "elf";
   readonly health: number;
   readonly position: {
@@ -32,12 +33,14 @@ const parseBattlefield: ParseBattlefield = input => {
           row.push("cavern");
           units.push({
             type: "goblin",
+            id: units.length,
             health: 200,
             position: { row: rowNumber, column: columnNumber }
           });
         } else {
           row.push("cavern");
           units.push({
+            id: units.length,
             type: "elf",
             health: 200,
             position: { row: rowNumber, column: columnNumber }

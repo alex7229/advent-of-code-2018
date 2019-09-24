@@ -1,18 +1,18 @@
-import comparePaths from "../../../days/15/comparePaths";
+import findShortestPathFromGiven from "../../../days/15/findShortestPathFromGiven";
 
 it("should throw if there are no paths passed", () => {
-  expect(() => comparePaths([])).toThrow();
+  expect(() => findShortestPathFromGiven([])).toThrow();
 });
 
 it("should return path if it is only one in the array", () => {
   const path = [{ row: 2, column: 2 }, { row: 3, column: 4 }];
-  expect(comparePaths([path])).toEqual(path);
+  expect(findShortestPathFromGiven([path])).toEqual(path);
 });
 
 it("should return the shortest path", () => {
   const shortPath = [{ row: 1, column: 2 }];
   const longerPath = [{ row: 1, column: 2 }, { row: 4, column: 4 }];
-  expect(comparePaths([longerPath, shortPath])).toEqual(shortPath);
+  expect(findShortestPathFromGiven([longerPath, shortPath])).toEqual(shortPath);
 });
 
 it("should return the shortest path by order if paths are the same length", () => {
@@ -32,7 +32,9 @@ it("should return the shortest path by order if paths are the same length", () =
     { row: 2, column: 2 }
   ];
 
-  expect(comparePaths([curvyPath, straightPath])).toEqual(straightPath);
+  expect(findShortestPathFromGiven([curvyPath, straightPath])).toEqual(
+    straightPath
+  );
   // left path       right path
   //    ##               ##
   //    #                 #
@@ -54,7 +56,7 @@ it("should return the shortest path by order if paths are the same length", () =
     { row: 0, column: 2 },
     { row: 0, column: 1 }
   ];
-  expect(comparePaths([rightPath, leftPath])).toEqual(leftPath);
+  expect(findShortestPathFromGiven([rightPath, leftPath])).toEqual(leftPath);
 });
 
 it("should return correct path if number is paths is bigger than 2", () => {
@@ -64,7 +66,7 @@ it("should return correct path if number is paths is bigger than 2", () => {
   const secondLongestPath = [position, position, position];
   const longestPath = [position, position, position, position];
   expect(
-    comparePaths([
+    findShortestPathFromGiven([
       secondLongestPath,
       longestPath,
       shortestPath,

@@ -14,14 +14,18 @@ it("should parse a cavern correctly", () => {
 it("should parse a goblin correctly", () => {
   expect(parseBattlefield("G")).toEqual({
     battlefield: [["cavern"]],
-    units: [{ type: "goblin", health: 200, position: { row: 0, column: 0 } }]
+    units: [
+      { type: "goblin", id: 0, health: 200, position: { row: 0, column: 0 } }
+    ]
   });
 });
 
 it("should parse an elf correctly", () => {
   expect(parseBattlefield("E")).toEqual({
     battlefield: [["cavern"]],
-    units: [{ type: "elf", health: 200, position: { row: 0, column: 0 } }]
+    units: [
+      { type: "elf", id: 0, health: 200, position: { row: 0, column: 0 } }
+    ]
   });
 });
 
@@ -36,9 +40,9 @@ it("should parse the field properly", () => {
       ["wall", "wall", "wall", "wall", "wall", "wall", "wall"]
     ],
     units: [
-      { type: "goblin", health: 200, position: { row: 1, column: 2 } },
-      { type: "elf", health: 200, position: { column: 4, row: 1 } },
-      { type: "elf", health: 200, position: { column: 5, row: 1 } }
+      { type: "goblin", id: 0, health: 200, position: { row: 1, column: 2 } },
+      { type: "elf", id: 1, health: 200, position: { column: 4, row: 1 } },
+      { type: "elf", id: 2, health: 200, position: { column: 5, row: 1 } }
     ]
   });
 });

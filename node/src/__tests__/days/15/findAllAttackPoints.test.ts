@@ -8,7 +8,7 @@ it("should find all attack points from the example", () => {
     #.G.#G#    
     #######`;
   const { battlefield, units } = parseBattlefield(input);
-  expect(findAllAttackPoints(battlefield, units, units[0])).toEqual([
+  expect(findAllAttackPoints(battlefield, units, "elf")).toEqual([
     { row: 1, column: 3 },
     { row: 1, column: 5 },
     { row: 2, column: 2 },
@@ -20,10 +20,10 @@ it("should find all attack points from the example", () => {
 
 it("should not find duplicate attack points", () => {
   const input = `....
-    E...
-    .G.G`;
+    G...
+    .E.E`;
   const { battlefield, units } = parseBattlefield(input);
-  expect(findAllAttackPoints(battlefield, units, units[0])).toEqual([
+  expect(findAllAttackPoints(battlefield, units, "goblin")).toEqual([
     { row: 1, column: 1 },
     { row: 2, column: 0 },
     { row: 2, column: 2 },

@@ -36,7 +36,7 @@ const findReachableAttackPoints: FindReachableAttackPoints = (
     // this is first invocation of the function
     // at this point visited map is fully marked (what is reachable and what is not)
     // now we need to find all the possible attack points and check if they are reachable
-    return findAllAttackPoints(battlefield, units, currentUnit).filter(
+    return findAllAttackPoints(battlefield, units, currentUnit.type).filter(
       attackCell => initialVisitedMap[attackCell.row][attackCell.column]
     );
   }

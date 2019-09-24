@@ -5,16 +5,16 @@ import findAdjustedCells, { Position } from "./findAdjustedCells";
 type FindAllAttackPoints = (
   battlefield: Battlefield,
   units: ReadonlyArray<Unit>,
-  currentUnit: Unit
+  currentUnitType: "elf" | "goblin"
 ) => ReadonlyArray<Position>;
 
 const findAllAttackPoints: FindAllAttackPoints = (
   battlefield,
   units,
-  currentUnit
+  currentUnitType
 ) => {
   const enemies = units.filter(unit => {
-    if (currentUnit.type === "goblin") {
+    if (currentUnitType === "goblin") {
       return unit.type === "elf";
     }
     return unit.type === "goblin";
