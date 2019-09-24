@@ -3,6 +3,7 @@
 laravel/app/**/input.txt
 composer.phar
 laravel/vendor/
+.vscode
 
 node/node_modules
 node/dist/**/*.js
