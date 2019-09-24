@@ -2,9 +2,9 @@ import cookOneRecipe, { CookOneRecipe } from "./cookOneRecipe";
 
 export type CookEnoughRecipes = (
   recipes: number[],
-  elvesPositions: number[],
+  elvesPositions: ReadonlyArray<number>,
   recipesNumber: string
-) => number[];
+) => ReadonlyArray<number>;
 export type CookEnoughRecipesFactory = (
   cookOneRecipe: CookOneRecipe
 ) => CookEnoughRecipes;

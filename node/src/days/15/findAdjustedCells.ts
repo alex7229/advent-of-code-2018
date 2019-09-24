@@ -1,5 +1,5 @@
 import { cloneDeep } from "lodash";
-import { Battlefield, Unit } from "./parseBattlefield";
+import { Battlefield, Unit, Cell } from "./parseBattlefield";
 
 export interface Position {
   readonly row: number;
@@ -8,11 +8,11 @@ export interface Position {
 type FindAdjustedCells = (
   field: Battlefield,
   position: Position,
-  units: Unit[]
-) => Position[];
+  units: ReadonlyArray<Unit>
+) => ReadonlyArray<Position>;
 
 const findAdjustedCells: FindAdjustedCells = (field, position, units) => {
-  const fieldCopy = cloneDeep(field);
+  const fieldCopy = cloneDeep(field) as Cell[][];
   units.forEach(unit => {
     fieldCopy[unit.position.row][unit.position.column] = "wall";
   });

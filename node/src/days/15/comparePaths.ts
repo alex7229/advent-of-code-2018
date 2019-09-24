@@ -1,8 +1,8 @@
 import { cloneDeep } from "lodash";
 import { Position } from "./findAdjustedCells";
 
-export type Path = Position[];
-type ComparePaths = (paths: Path[]) => Path;
+export type Path = ReadonlyArray<Position>;
+type ComparePaths = (paths: ReadonlyArray<Path>) => Path;
 
 const comparePaths: ComparePaths = providedPaths => {
   if (providedPaths.length === 0) {
@@ -11,7 +11,7 @@ const comparePaths: ComparePaths = providedPaths => {
   if (providedPaths.length === 1) {
     return providedPaths[0];
   }
-  const paths = cloneDeep(providedPaths);
+  const paths = cloneDeep(providedPaths) as Path[];
   paths.sort((firstPath, secondPath) => {
     if (firstPath.length < secondPath.length) {
       return -1;

@@ -2,9 +2,9 @@ import { sortBy } from "lodash";
 import { Position } from "./findAdjustedCells";
 
 type SortAdjustedCellsByPriority = (
-  adjustedCells: Position[],
-  destinationCells: Position[]
-) => Position[];
+  adjustedCells: ReadonlyArray<Position>,
+  destinationCells: ReadonlyArray<Position>
+) => ReadonlyArray<Position>;
 
 const sortAdjustedCellsByPriority: SortAdjustedCellsByPriority = (
   adjustedCells,

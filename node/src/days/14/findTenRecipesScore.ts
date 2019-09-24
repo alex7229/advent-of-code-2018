@@ -1,5 +1,5 @@
 export type FindTenRecipesScore = (
-  recipes: number[],
+  recipes: ReadonlyArray<number>,
   lastNonScoredRecipe: string
 ) => string;
 

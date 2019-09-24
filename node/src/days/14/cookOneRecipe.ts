@@ -4,12 +4,12 @@ import getNextRecipesScore, {
 
 interface Result {
   readonly recipes: number[];
-  readonly elvesPositions: number[];
+  readonly elvesPositions: ReadonlyArray<number>;
 }
 
 export type CookOneRecipe = (
   recipes: number[],
-  elvesPositions: number[]
+  elvesPositions: ReadonlyArray<number>
 ) => Result;
 type CookOneRecipeFactory = (
   getNextRecipesScore: GetNextRecipesScore

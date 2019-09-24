@@ -1,4 +1,6 @@
-export type GetNextRecipesScore = (scores: number[]) => number[];
+export type GetNextRecipesScore = (
+  scores: ReadonlyArray<number>
+) => ReadonlyArray<number>;
 
 const getNextRecipesScore: GetNextRecipesScore = scores =>
   scores

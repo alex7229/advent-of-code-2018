@@ -3,7 +3,7 @@ export interface Pot {
   readonly isFilled: boolean;
 }
 
-type GetInitialPotsFromString = (pots: string) => Pot[];
+type GetInitialPotsFromString = (pots: string) => ReadonlyArray<Pot>;
 
 const getInitialPotsFromString: GetInitialPotsFromString = pots =>
   pots.split("").map((potSymbol, index) => ({

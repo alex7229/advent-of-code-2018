@@ -1,7 +1,7 @@
 import { Cart } from "./parseField";
 import findCrash from "./findCrash";
 
-type RemoveBrokenCarts = (carts: Cart[]) => Cart[];
+type RemoveBrokenCarts = (carts: ReadonlyArray<Cart>) => ReadonlyArray<Cart>;
 
 const removeBrokenCarts: RemoveBrokenCarts = carts => {
   let removedCarts = carts;

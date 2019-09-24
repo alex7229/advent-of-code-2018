@@ -6,11 +6,11 @@ import findAllAttackPoints from "./findAllAttackPoints";
 type VisitedMap = boolean[][];
 type FindReachableAttackPoints = (
   battlefield: Battlefield,
-  units: Unit[],
+  units: ReadonlyArray<Unit>,
   currentUnit: Unit,
   visitedMap?: VisitedMap,
   currentCell?: Position
-) => Position[];
+) => ReadonlyArray<Position>;
 
 const findReachableAttackPoints: FindReachableAttackPoints = (
   battlefield,

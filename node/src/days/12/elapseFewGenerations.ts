@@ -4,10 +4,10 @@ import addEmptySidePots from "./addEmptySidePots";
 import elapseGeneration from "./elapseGeneration";
 
 type ElapseFewGenerations = (
-  pots: Pot[],
-  growCombinations: GrowCombination[],
+  pots: ReadonlyArray<Pot>,
+  growCombinations: ReadonlyArray<GrowCombination>,
   generationsNumber: number
-) => Pot[];
+) => ReadonlyArray<Pot>;
 
 const elapseFewGenerations: ElapseFewGenerations = (
   pots,

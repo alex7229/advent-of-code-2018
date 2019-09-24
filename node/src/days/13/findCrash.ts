@@ -1,7 +1,7 @@
 import { Cart } from "./parseField";
 import { Position } from "../10/parseLightPoints";
 
-type FindCrash = (carts: Cart[]) => Position | null;
+type FindCrash = (carts: ReadonlyArray<Cart>) => Position | null;
 
 const findCrash: FindCrash = carts => {
   for (let i = 0; i < carts.length - 1; i += 1) {

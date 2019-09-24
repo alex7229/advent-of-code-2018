@@ -1,7 +1,10 @@
 import { sortBy } from "lodash";
 import { Cart, Field, Cell, IntersectionTurn, Direction } from "./parseField";
 
-type MoveCarts = (carts: Cart[], field: Field) => Cart[];
+type MoveCarts = (
+  carts: ReadonlyArray<Cart>,
+  field: Field
+) => ReadonlyArray<Cart>;
 
 const moveCarts: MoveCarts = (carts, field) =>
   sortBy(carts, ["position.y", "position.x"]).map(cart => {

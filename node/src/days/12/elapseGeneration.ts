@@ -3,9 +3,9 @@ import { GrowCombination } from "./parsePots";
 import arePotsFilledTheSame from "./arePotsFilledTheSame";
 
 type ElapseGeneration = (
-  pots: Pot[],
-  growCombinations: GrowCombination[]
-) => Pot[];
+  pots: ReadonlyArray<Pot>,
+  growCombinations: ReadonlyArray<GrowCombination>
+) => ReadonlyArray<Pot>;
 
 const elapseGeneration: ElapseGeneration = (pots, growCombinations) => {
   const resultPots: Pot[] = [pots[0], pots[1]];

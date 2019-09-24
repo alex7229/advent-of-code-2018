@@ -13,7 +13,7 @@ export interface Point {
   readonly velocity: Velocity;
 }
 
-type ParseLightPoints = (input: string) => Point[];
+type ParseLightPoints = (input: string) => ReadonlyArray<Point>;
 
 const parseLightPoints: ParseLightPoints = input => {
   return input.split("\n").map(row => {

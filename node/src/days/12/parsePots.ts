@@ -1,13 +1,13 @@
 import getInitialPotsFromString, { Pot } from "./getInitialPotsFromString";
 
 export interface GrowCombination {
-  readonly before: Pot[];
+  readonly before: ReadonlyArray<Pot>;
   readonly after: Pot;
 }
 
 interface PotsData {
-  readonly initialState: Pot[];
-  readonly growCombinations: GrowCombination[];
+  readonly initialState: ReadonlyArray<Pot>;
+  readonly growCombinations: ReadonlyArray<GrowCombination>;
 }
 
 type ParsePots = (input: string) => PotsData;

@@ -4,13 +4,12 @@ import comparePaths, { Path } from "./comparePaths";
 import sortAdjustedCellsByPriority from "./sortAdjustedCellsByPriority";
 import findMinimumTeoriticalPathLength from "./findMinimumTeoriticalPathLength";
 
-type CellsDistance = number[][];
 type FindShortestPath = (
   from: Position,
-  destinations: Position[],
+  destinations: ReadonlyArray<Position>,
   battlefield: Battlefield,
-  units: Unit[],
-  cellsDistance?: CellsDistance,
+  units: ReadonlyArray<Unit>,
+  cellsDistance?: number[][],
   currentPath?: Path,
   lengthLimit?: number
 ) => Path | null;

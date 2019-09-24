@@ -1,5 +1,6 @@
-type Cell = "wall" | "cavern";
-export type Battlefield = Cell[][];
+export type Cell = "wall" | "cavern";
+type Row = ReadonlyArray<Cell>;
+export type Battlefield = ReadonlyArray<Row>;
 export interface Unit {
   readonly type: "goblin" | "elf";
   readonly health: number;
@@ -9,13 +10,13 @@ export interface Unit {
   };
 }
 interface Result {
-  readonly units: Unit[];
+  readonly units: ReadonlyArray<Unit>;
   readonly battlefield: Battlefield;
 }
 type ParseBattlefield = (input: string) => Result;
 
 const parseBattlefield: ParseBattlefield = input => {
-  const battlefield: Battlefield = [];
+  const battlefield: Cell[][] = [];
   const units: Unit[] = [];
   input.split("\n").forEach((rowString, rowNumber) => {
     const row: Cell[] = [];

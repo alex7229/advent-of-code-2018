@@ -2,7 +2,7 @@ import * as fs from "fs";
 import { Point } from "./parseLightPoints";
 import findFieldLimits from "./findFieldLimits";
 
-type DrawPoints = (points: Point[]) => void;
+type DrawPoints = (points: ReadonlyArray<Point>) => void;
 
 const drawPoints: DrawPoints = points => {
   const limits = findFieldLimits(points);

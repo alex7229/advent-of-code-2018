@@ -4,9 +4,9 @@ import findAdjustedCells, { Position } from "./findAdjustedCells";
 
 type FindAllAttackPoints = (
   battlefield: Battlefield,
-  units: Unit[],
+  units: ReadonlyArray<Unit>,
   currentUnit: Unit
-) => Position[];
+) => ReadonlyArray<Position>;
 
 const findAllAttackPoints: FindAllAttackPoints = (
   battlefield,

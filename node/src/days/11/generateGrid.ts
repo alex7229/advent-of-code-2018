@@ -5,7 +5,7 @@ type GenerateGrid = (
   width: number,
   height: number,
   serialNumber: number
-) => number[][];
+) => ReadonlyArray<ReadonlyArray<number>>;
 
 const generateGrid: GenerateGrid = (width, height, serialNumber) => {
   const field: number[][] = [];

@@ -3,7 +3,7 @@ import { Position } from "./findAdjustedCells";
 type FindMinimumTeoriticalPathLength = (
   currentPathLength: number,
   currentCell: Position,
-  destinationCells: Position[]
+  destinationCells: ReadonlyArray<Position>
 ) => number;
 
 const findMinimumTeoriticalPathLength: FindMinimumTeoriticalPathLength = (

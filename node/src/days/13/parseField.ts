@@ -1,8 +1,8 @@
 import { Position } from "../10/parseLightPoints";
 
 export type Cell = "-" | "|" | "/" | "\\" | "+" | " ";
-type Row = Cell[];
-export type Field = Row[];
+type Row = ReadonlyArray<Cell>;
+export type Field = ReadonlyArray<Row>;
 export type Direction = "left" | "right" | "up" | "down";
 export type IntersectionTurn = "left" | "right" | "straight";
 export interface Cart {
@@ -12,7 +12,7 @@ export interface Cart {
 }
 interface FieldData {
   readonly field: Field;
-  readonly carts: Cart[];
+  readonly carts: ReadonlyArray<Cart>;
 }
 
 type ParseField = (input: string) => FieldData;

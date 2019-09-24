@@ -1,7 +1,7 @@
 import { Point } from "./parseLightPoints";
 import findFieldLimits from "./findFieldLimits";
 
-type FindFieldArea = (points: Point[]) => number;
+type FindFieldArea = (points: ReadonlyArray<Point>) => number;
 
 const findFieldArea: FindFieldArea = points => {
   const { topLeftCorner, bottomRightCorner } = findFieldLimits(points);

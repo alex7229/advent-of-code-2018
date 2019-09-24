@@ -1,10 +1,10 @@
 import { cloneDeep } from "lodash";
 import { Pot } from "./getInitialPotsFromString";
 
-type AddEmptySidePots = (pots: Pot[]) => Pot[];
+type AddEmptySidePots = (pots: ReadonlyArray<Pot>) => ReadonlyArray<Pot>;
 
 const addEmptySidePots: AddEmptySidePots = pots => {
-  const potsCopy = cloneDeep(pots);
+  const potsCopy = cloneDeep(pots) as Pot[];
   while (!potsCopy[0].isFilled) {
     potsCopy.shift();
   }

@@ -3,7 +3,7 @@ import { Position } from "../10/parseLightPoints";
 type FindSquarePower = (
   topLeftCellPosition: Position,
   squareSize: number,
-  field: number[][]
+  field: ReadonlyArray<ReadonlyArray<number>>
 ) => number;
 
 const findSquarePower: FindSquarePower = (

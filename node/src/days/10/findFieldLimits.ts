@@ -5,7 +5,7 @@ interface Limits {
   readonly bottomRightCorner: Position;
 }
 
-type FindFieldLimits = (points: Point[]) => Limits;
+type FindFieldLimits = (points: ReadonlyArray<Point>) => Limits;
 
 const findFieldLimits: FindFieldLimits = points => {
   const limits = {

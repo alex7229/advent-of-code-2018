@@ -1,6 +1,9 @@
 import { Pot } from "./getInitialPotsFromString";
 
-type ArePotsFilledTheSame = (firstPots: Pot[], secondPots: Pot[]) => boolean;
+type ArePotsFilledTheSame = (
+  firstPots: ReadonlyArray<Pot>,
+  secondPots: ReadonlyArray<Pot>
+) => boolean;
 
 const arePotsFilledTheSame: ArePotsFilledTheSame = (firstPots, secondPots) => {
   const firstPotsString = firstPots

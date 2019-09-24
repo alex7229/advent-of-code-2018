@@ -1,6 +1,6 @@
 import { Pot } from "./getInitialPotsFromString";
 
-type FindPotsSum = (pots: Pot[]) => number;
+type FindPotsSum = (pots: ReadonlyArray<Pot>) => number;
 
 const findPotsSum: FindPotsSum = pots =>
   pots.reduce((total, currentPot) => {
