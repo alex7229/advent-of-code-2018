@@ -3,16 +3,24 @@ import { Battlefield, Unit } from "./parseBattlefield";
 import tryToMoveUnit from "./tryToMoveUnit";
 import tryToAttack from "./tryToAttack";
 import sortUnits from "./sortUnits";
+import isCombatFinished from "./isCombatFinished";
 
+interface Result {
+  readonly wasRoundCompletelyCompleted: boolean;
+  readonly units: ReadonlyArray<Unit>;
+}
 type ElapseOneRound = (
   battlefield: Battlefield,
   units: ReadonlyArray<Unit>
-) => ReadonlyArray<Unit>;
+) => Result;
 
 const elapseOneRound: ElapseOneRound = (battlefield, units) => {
   let currentUnits = sortUnits(cloneDeep(units));
   const readyUnitsId = units.map(unit => unit.id);
   while (readyUnitsId.length > 0) {
+    if (isCombatFinished(currentUnits)) {
+      return { wasRoundCompletelyCompleted: false, units: currentUnits };
+    }
     let currentUnit = currentUnits.find(unit => unit.id === readyUnitsId[0]);
     if (!currentUnit) {
       // eslint-disable-next-line no-continue
@@ -28,7 +36,7 @@ const elapseOneRound: ElapseOneRound = (battlefield, units) => {
     );
     readyUnitsId.shift();
   }
-  return currentUnits;
+  return { wasRoundCompletelyCompleted: true, units: currentUnits };
 };
 
 export default elapseOneRound;

@@ -15,9 +15,9 @@ it("should work with real examples", () => {
   #######`;
   const { units, battlefield } = parseBattlefield(input);
   const afterOneRound = elapseOneRound(battlefield, units);
-  const afterTwoRounds = elapseOneRound(battlefield, afterOneRound);
+  const afterTwoRounds = elapseOneRound(battlefield, afterOneRound.units);
   // IDs are irrelevant here
-  const unitsWithoutId = afterTwoRounds.map(unit => {
+  const unitsWithoutId = afterTwoRounds.units.map(unit => {
     const unitCopy = cloneDeep(unit);
     // @ts-ignore
     delete unitCopy.id;
@@ -55,6 +55,8 @@ it("should work with real examples", () => {
       position: { row: 4, column: 5 }
     }
   ]);
+  expect(afterOneRound.wasRoundCompletelyCompleted).toBe(true);
+  expect(afterTwoRounds.wasRoundCompletelyCompleted).toBe(true);
 });
 
 it("should work when there are casualties on the battlefield", () => {
@@ -81,8 +83,8 @@ it("should work when there are casualties on the battlefield", () => {
   ];
 
   const afterOneRound = elapseOneRound(battlefield, units);
-  const afterTwoRounds = elapseOneRound(battlefield, afterOneRound);
-  expect(afterTwoRounds).toEqual([
+  const afterTwoRounds = elapseOneRound(battlefield, afterOneRound.units);
+  expect(afterTwoRounds.units).toEqual([
     {
       type: "elf",
       health: 1,
@@ -90,4 +92,40 @@ it("should work when there are casualties on the battlefield", () => {
       id: 7
     }
   ]);
+  expect(afterOneRound.wasRoundCompletelyCompleted).toBe(true);
+  expect(afterTwoRounds.wasRoundCompletelyCompleted).toBe(true);
+});
+
+it("round should end immediately if there are no enemies left", () => {
+  const battlefield: Battlefield = [["cavern", "cavern"]];
+  const units: Unit[] = [
+    { type: "goblin", id: 15, health: 10, position: { row: 0, column: 0 } },
+    {
+      type: "elf",
+      id: 10,
+      health: 1,
+      position: { row: 0, column: 1 }
+    }
+  ];
+  const result = elapseOneRound(battlefield, units);
+  expect(result.wasRoundCompletelyCompleted).toBe(false);
+  expect(result.units).toEqual([
+    { type: "goblin", id: 15, health: 10, position: { row: 0, column: 0 } }
+  ]);
+});
+
+it("round should not start if there are no enemies left", () => {
+  const battlefield: Battlefield = [["cavern", "cavern"]];
+  const units: Unit[] = [
+    { type: "goblin", id: 15, health: 10, position: { row: 0, column: 0 } },
+    {
+      type: "goblin",
+      id: 10,
+      health: 1,
+      position: { row: 0, column: 1 }
+    }
+  ];
+  const result = elapseOneRound(battlefield, units);
+  expect(result.wasRoundCompletelyCompleted).toBe(false);
+  expect(result.units).toEqual(units);
 });
