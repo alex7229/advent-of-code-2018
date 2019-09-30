@@ -9,7 +9,10 @@ const defaultFunctions = {
   findAllAttackPoints: jest.fn().mockReturnValue([{ row: 20, column: 17 }]),
   findShortestPath: jest
     .fn()
-    .mockReturnValue([{ row: 10, column: 10 }, { row: 10, column: 11 }])
+    .mockReturnValue([{ row: 10, column: 10 }, { row: 10, column: 11 }]),
+  findReachableAttackPoints: jest
+    .fn()
+    .mockReturnValue([{ row: 20, column: 15 }])
 };
 
 const defaultUnit: Unit = {
@@ -43,14 +46,14 @@ it("should not move if there are enemies nearby", () => {
 
 it("should not move if there are no reachable attack points of any enemy", () => {
   const currentUnit = cloneDeep(defaultUnit);
-  const findAttackPointsMock = jest.fn().mockReturnValue([]);
+  const findReachableAttackPointsMock = jest.fn().mockReturnValue([]);
   expect(
     tryToMoveUnitFactory({
       ...defaultFunctions,
-      findAllAttackPoints: findAttackPointsMock
+      findReachableAttackPoints: findReachableAttackPointsMock
     })(currentUnit, [currentUnit], [])
   ).toEqual([currentUnit]);
-  expect(findAttackPointsMock.mock.calls.length).toBe(1);
+  expect(findReachableAttackPointsMock.mock.calls.length).toBe(1);
 });
 
 it("unit should move according to the sortest path", () => {

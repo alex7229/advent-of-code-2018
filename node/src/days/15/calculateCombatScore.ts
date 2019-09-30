@@ -1,6 +1,9 @@
 import { Unit } from "./parseBattlefield";
 
-type CalculateCombatScore = (units: Unit[], rounds: number) => number;
+type CalculateCombatScore = (
+  units: ReadonlyArray<Unit>,
+  rounds: number
+) => number;
 
 const calculateCombatScore: CalculateCombatScore = (units, rounds) =>
   units.reduce(

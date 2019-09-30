@@ -4,7 +4,7 @@ import findAdjustedCells, { Position } from "./findAdjustedCells";
 import findAllAttackPoints from "./findAllAttackPoints";
 
 type VisitedMap = boolean[][];
-type FindReachableAttackPoints = (
+export type FindReachableAttackPoints = (
   battlefield: Battlefield,
   units: ReadonlyArray<Unit>,
   currentUnit: Unit,

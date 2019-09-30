@@ -1,4 +1,4 @@
-import parseBattlefield from "../../../days/15/parseBattlefield";
+import parseBattlefield, { Unit } from "../../../days/15/parseBattlefield";
 import findReachableAttackPoints from "../../../days/15/findReachableAttackPoints";
 
 it("should return nothing if battlefield is empty", () => {
@@ -8,12 +8,14 @@ it("should return nothing if battlefield is empty", () => {
 });
 
 it("should return nothing if everything is unrechable", () => {
+  const testGoblin: Unit = {
+    id: 15,
+    type: "goblin",
+    health: 200,
+    position: { row: 0, column: 0 }
+  };
   expect(
-    findReachableAttackPoints(
-      [["cavern"]],
-      [{ type: "goblin", health: 200, position: { row: 0, column: 0 } }],
-      { type: "goblin", health: 200, position: { row: 0, column: 0 } }
-    )
+    findReachableAttackPoints([["cavern"]], [testGoblin], testGoblin)
   ).toEqual([]);
   const input = `##\n#G`;
   const { battlefield, units } = parseBattlefield(input);

@@ -6,10 +6,14 @@ import findAllAttackPoints, {
   FindAllAttackPoints
 } from "./findAllAttackPoints";
 import findShortestPath, { FindShortestPath } from "./findShortestPath";
+import findReachableAttackPoints, {
+  FindReachableAttackPoints
+} from "./findReachableAttackPoints";
 
 interface Dependencies {
   readonly findEnemiesForAttack: FindEnemiesForAttack;
   readonly findAllAttackPoints: FindAllAttackPoints;
+  readonly findReachableAttackPoints: FindReachableAttackPoints;
   readonly findShortestPath: FindShortestPath;
 }
 type TryToMoveUnit = (
@@ -32,7 +36,12 @@ export const tryToMoveUnitFactory: TryToMoveUnitFactory = dependencies => (
     units,
     unit.type
   );
-  if (attackPoints.length === 0) {
+  const reachableAttackPoints = dependencies.findReachableAttackPoints(
+    battlefield,
+    units,
+    unit
+  );
+  if (reachableAttackPoints.length === 0) {
     return units;
   }
   const shortestPath = dependencies.findShortestPath(
@@ -55,5 +64,6 @@ export const tryToMoveUnitFactory: TryToMoveUnitFactory = dependencies => (
 export default tryToMoveUnitFactory({
   findEnemiesForAttack,
   findAllAttackPoints,
-  findShortestPath
+  findShortestPath,
+  findReachableAttackPoints
 });
