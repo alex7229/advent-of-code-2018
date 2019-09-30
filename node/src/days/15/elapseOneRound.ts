@@ -23,6 +23,7 @@ const elapseOneRound: ElapseOneRound = (battlefield, units) => {
     }
     let currentUnit = currentUnits.find(unit => unit.id === readyUnitsId[0]);
     if (!currentUnit) {
+      readyUnitsId.shift();
       // eslint-disable-next-line no-continue
       continue;
     }

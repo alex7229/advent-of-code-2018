@@ -64,36 +64,52 @@ it("should work when there are casualties on the battlefield", () => {
   const units: Unit[] = [
     {
       type: "goblin",
-      health: 3,
+      health: 200,
       position: { row: 0, column: 0 },
       id: 12
     },
     {
-      type: "goblin",
+      type: "elf",
       health: 2,
       position: { row: 0, column: 1 },
       id: 100
     },
     {
-      type: "elf",
-      health: 7,
+      type: "goblin",
+      health: 200,
       position: { row: 0, column: 2 },
       id: 7
+    },
+    {
+      type: "elf",
+      health: 4,
+      position: { row: 0, column: 3 },
+      id: 71
     }
   ];
 
-  const afterOneRound = elapseOneRound(battlefield, units);
-  const afterTwoRounds = elapseOneRound(battlefield, afterOneRound.units);
-  expect(afterTwoRounds.units).toEqual([
+  const result = elapseOneRound(battlefield, units);
+  expect(result.units).toEqual([
+    {
+      type: "goblin",
+      health: 200,
+      position: { row: 0, column: 0 },
+      id: 12
+    },
+    {
+      type: "goblin",
+      health: 197,
+      position: { row: 0, column: 2 },
+      id: 7
+    },
     {
       type: "elf",
       health: 1,
-      position: { row: 0, column: 2 },
-      id: 7
+      position: { row: 0, column: 3 },
+      id: 71
     }
   ]);
-  expect(afterOneRound.wasRoundCompletelyCompleted).toBe(true);
-  expect(afterTwoRounds.wasRoundCompletelyCompleted).toBe(true);
+  expect(result.wasRoundCompletelyCompleted).toBe(true);
 });
 
 it("round should end immediately if there are no enemies left", () => {

@@ -1,54 +1,69 @@
 import solve from "../../../days/15/Day15Part1";
 
-it.skip("should calculate the combat result for all the fields correctly", () => {
-  const firstField = `#######
-#.G...#
-#...EG#
-#.#.#G#
-#..G#E#
-#.....#
-#######`;
-  const secondField = `#######
-#G..#E#
-#E#E.E#
-#G.##.# 
-#...#E# 
-#...E.# 
-#######`;
-  const thirdField = `#######         
-#E..EG#      
-#.#G.E#    
-#E.##E# 
-#G..#.#    
-#..E#.#   
-#######`;
-  const fourthField = `#######      
-#E.G#.#     
-#.#G..#    
-#G.#.G#  
-#G..#.#    
-#...E.#     
-#######`;
-  const fifthField = `#######      
-#.E...#    
-#.#..G#    
-#.###.#   
-#E#G#G#     
-#...#G#     
-####### `;
-  const sixthField = `#########   
-#G......#     
-#.E.#...#     
-#..##..G#     
-#...##..#  
-#...#...#     
-#.G...G.#     
-#.....G.#      
-#########`;
-  expect(solve(firstField)).toBe(27730);
-  expect(solve(secondField)).toBe(36634);
-  expect(solve(thirdField)).toBe(39514);
-  expect(solve(fourthField)).toBe(27755);
-  expect(solve(fifthField)).toBe(28944);
-  expect(solve(sixthField)).toBe(18740);
+it("should calculate the first battle properly", () => {
+  const field = `#######
+  #.G...#
+  #...EG#
+  #.#.#G#
+  #..G#E#
+  #.....#
+  #######`;
+  expect(solve(field)).toBe(27730);
+});
+
+it("should calculate the second battle properly", () => {
+  const field = `#######      
+  #G..#E#      
+  #E#E.E#     
+  #G.##.# 
+  #...#E#    
+  #...E.#    
+  #######`;
+  expect(solve(field)).toBe(36334);
+});
+
+it("should calculate the third battle properly", () => {
+  const field = `#######    
+  #E..EG#    
+  #.#G.E#    
+  #E.##E#  
+  #G..#.#    
+  #..E#.#     
+  #######`;
+  expect(solve(field)).toBe(39514);
+});
+
+it("should calculate the fourth battle properly", () => {
+  const field = `#######     
+  #E.G#.#      
+  #.#G..#     
+  #G.#.G# 
+  #G..#.#      
+  #...E.#      
+  #######`;
+  expect(solve(field)).toBe(27755);
+});
+
+it("should calculate the fifth battle properly", () => {
+  const field = `#######      
+  #.E...#   
+  #.#..G#      
+  #.###.#  
+  #E#G#G#   
+  #...#G#     
+  #######`;
+  expect(solve(field)).toBe(28944);
+});
+
+it("should calculate the sixth battle properly", () => {
+  const field = `#########      
+  #G......#    
+  #.E.#...#     
+  #..##..G#    
+  #...##..# 
+  #...#...#    
+  #.G...G.#     
+  #.....G.#     
+  #########`;
+  expect(solve(field)).toBe(18740);
 });
