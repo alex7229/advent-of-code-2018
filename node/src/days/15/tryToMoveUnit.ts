@@ -2,9 +2,6 @@ import { Unit, Battlefield } from "./parseBattlefield";
 import findEnemiesForAttack, {
   FindEnemiesForAttack
 } from "./findEnemiesForAttack";
-import findAllAttackPoints, {
-  FindAllAttackPoints
-} from "./findAllAttackPoints";
 import findShortestPath, { FindShortestPath } from "./findShortestPath";
 import findReachableAttackPoints, {
   FindReachableAttackPoints
@@ -12,7 +9,6 @@ import findReachableAttackPoints, {
 
 interface Dependencies {
   readonly findEnemiesForAttack: FindEnemiesForAttack;
-  readonly findAllAttackPoints: FindAllAttackPoints;
   readonly findReachableAttackPoints: FindReachableAttackPoints;
   readonly findShortestPath: FindShortestPath;
 }
@@ -31,11 +27,6 @@ export const tryToMoveUnitFactory: TryToMoveUnitFactory = dependencies => (
   if (dependencies.findEnemiesForAttack(unit, units).length > 0) {
     return units;
   }
-  const attackPoints = dependencies.findAllAttackPoints(
-    battlefield,
-    units,
-    unit.type
-  );
   const reachableAttackPoints = dependencies.findReachableAttackPoints(
     battlefield,
     units,
@@ -46,7 +37,7 @@ export const tryToMoveUnitFactory: TryToMoveUnitFactory = dependencies => (
   }
   const shortestPath = dependencies.findShortestPath(
     unit.position,
-    attackPoints,
+    reachableAttackPoints,
     battlefield,
     units
   );
@@ -63,7 +54,6 @@ export const tryToMoveUnitFactory: TryToMoveUnitFactory = dependencies => (
 
 export default tryToMoveUnitFactory({
   findEnemiesForAttack,
-  findAllAttackPoints,
   findShortestPath,
   findReachableAttackPoints
 });

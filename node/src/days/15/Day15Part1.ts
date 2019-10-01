@@ -10,9 +10,6 @@ const solve: Solve = input => {
   let rounds = 0;
   let isBattleOver = isCombatFinished(currentUnits);
   while (!isBattleOver) {
-    // if (rounds === 33) {
-    //   debugger;
-    // }
     const result = elapseOneRound(battlefield, currentUnits);
     currentUnits = result.units;
     if (!result.wasRoundCompletelyCompleted) {

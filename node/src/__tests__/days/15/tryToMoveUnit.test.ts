@@ -36,8 +36,7 @@ it("should not move if there are enemies nearby", () => {
   expect(
     tryToMoveUnitFactory({
       ...defaultFunctions,
-      findEnemiesForAttack: findEnemiesMock,
-      findAllAttackPoints: findAllAttackPointsMock
+      findEnemiesForAttack: findEnemiesMock
     })(currentUnit, [currentUnit], [])
   ).toEqual([currentUnit]);
   expect(findEnemiesMock.mock.calls.length).toBe(1);
@@ -73,9 +72,6 @@ it("unit should move according to the sortest path", () => {
   const availableAttackPoint = { row: 20, column: 20 };
   const intermediatePathPoint = { row: 5, column: 5 };
   const unitAfterMove = { ...currentUnit, position: intermediatePathPoint };
-  const findAllAttackPointsMock = jest
-    .fn()
-    .mockReturnValue([availableAttackPoint]);
   const findShortestPathMock = jest
     .fn()
     .mockReturnValue([
@@ -86,8 +82,7 @@ it("unit should move according to the sortest path", () => {
   expect(
     tryToMoveUnitFactory({
       ...defaultFunctions,
-      findShortestPath: findShortestPathMock,
-      findAllAttackPoints: findAllAttackPointsMock
+      findShortestPath: findShortestPathMock
     })(currentUnit, [randomElf, randomGoblin, currentUnit], [])
   ).toEqual([randomElf, randomGoblin, unitAfterMove]);
   expect(findShortestPathMock.mock.calls.length).toBe(1);
