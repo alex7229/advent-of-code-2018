@@ -18,6 +18,9 @@ const solve: Solve = input => {
     rounds += 1;
     isBattleOver = isCombatFinished(currentUnits);
   }
+  // todo: the answer is incorrect for some reason
+  // goblins have less health than they should
+  // check it (compare to https://github.com/albertobastos/advent-of-code-2018-nodejs)
   return calculateCombatScore(currentUnits, rounds);
 };
 
