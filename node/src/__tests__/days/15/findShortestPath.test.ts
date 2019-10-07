@@ -198,7 +198,7 @@ it("should find far away cell immediately", () => {
   const { battlefield, units } = parseBattlefield(input);
   const path = findShortestPath(
     { row: 1, column: 1 },
-    [{ row: 12, column: 7 }],
+    [{ row: 15, column: 15 }],
     battlefield,
     units
   );
@@ -206,12 +206,6 @@ it("should find far away cell immediately", () => {
     throw new Error("path should be found here");
   }
   expect(path[0]).toEqual({ row: 1, column: 1 });
-  expect(path[path.length - 1]).toEqual({ row: 12, column: 7 });
-  expect(path.length).toBe(18);
-});
-
-it.skip("real example test with very long path between points => performance test", () => {
-  const slowQuery = `[{"type":"goblin","id":11,"health":200,"position":{"row":11,"column":11}},{"type":"goblin","id":0,"health":200,"position":{"row":13,"column":8}},{"type":"goblin","id":7,"health":200,"position":{"row":14,"column":9}},{"type":"goblin","id":1,"health":200,"position":{"row":17,"column":7}},{"type":"goblin","id":3,"health":200,"position":{"row":17,"column":11}},{"type":"goblin","id":5,"health":200,"position":{"row":19,"column":6}},{"type":"goblin","id":12,"health":101,"position":{"row":18,"column":10}},{"id":28,"type":"elf","health":26,"position":{"row":18,"column":11}},{"type":"goblin","id":9,"health":200,"position":{"row":19,"column":9}},{"type":"goblin","id":13,"health":200,"position":{"row":19,"column":11}},{"type":"goblin","id":8,"health":200,"position":{"row":21,"column":7}},{"type":"goblin","id":4,"health":200,"position":{"row":20,"column":8}},{"id":27,"type":"elf","health":131,"position":{"row":20,"column":9}},{"type":"goblin","id":2,"health":65,"position":{"row":20,"column":10}},{"type":"goblin","id":6,"health":200,"position":{"row":20,"column":19}},{"type":"goblin","id":14,"health":5,"position":{"row":22,"column":11}}]`;
-  // this round wasn't processed in a day
-  console.log(slowQuery);
+  expect(path[path.length - 1]).toEqual({ row: 15, column: 15 });
+  expect(path.length).toBe(29);
 });
