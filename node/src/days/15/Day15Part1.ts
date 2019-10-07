@@ -16,6 +16,7 @@ const solve: Solve = input => {
       break;
     }
     rounds += 1;
+
     isBattleOver = isCombatFinished(currentUnits);
   }
   // todo: the answer is incorrect for some reason
