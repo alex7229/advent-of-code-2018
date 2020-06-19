@@ -100,7 +100,7 @@ const findShortestPath: FindShortestPath = (
   }
   let currentLengthLimit = lengthLimit;
   // const possiblePaths = adjustedCells
-  const possiblePaths = sortAdjustedCellsByPriority(adjustedCells, destinations)
+  const possiblePaths = sortAdjustedCellsByPriority(adjustedCells)
     .map(cell => {
       const optimisticPathLength = findMinimumTeoriticalPathLength(
         currentPath.length,
