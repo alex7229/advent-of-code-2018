@@ -1,7 +1,7 @@
 import { State } from "./operations";
 import { Instruction } from "./findPossibleOperation";
 
-interface Sample {
+export interface Sample {
   before: State;
   after: State;
   instruction: Instruction;
