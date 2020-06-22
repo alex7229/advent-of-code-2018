@@ -1,8 +1,8 @@
-interface Position {
+export interface Position {
   row: number;
   column: number;
 }
-interface Cell {
+export interface Cell {
   position: Position;
   type: "sand" | "clay" | "water" | "wet sand" | "spring";
 }
