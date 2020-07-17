@@ -4,20 +4,20 @@ module.exports = {
     "<rootDir>/src/**/*.ts",
     "!<rootDir>/src/sandbox/**/*.ts",
     "!<rootDir>/src/index.ts",
-    "!<rootDir>/src/application/config.ts"
+    "!<rootDir>/src/application/config.ts",
   ],
-  testMatch: ["<rootDir>/src/__tests__/**/*.ts"],
+  testMatch: ["<rootDir>/src/__tests__/**/*.test.ts"],
   testEnvironment: "node",
   transform: {
-    "^.+\\.ts$": "ts-jest"
+    "^.+\\.ts$": "ts-jest",
   },
   transformIgnorePatterns: [
-    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"
+    "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$",
   ],
   moduleFileExtensions: ["ts", "js"],
   globals: {
     "ts-jest": {
-      tsConfig: "tsconfig.json"
-    }
-  }
+      tsConfig: "tsconfig.json",
+    },
+  },
 };

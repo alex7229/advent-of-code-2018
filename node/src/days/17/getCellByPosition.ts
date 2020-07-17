@@ -1,6 +1,9 @@
 import { Field, Cell, Position } from "./parseGround";
 
-type GetCellByPosition = (position: Position, field: Field) => Cell | null;
+export type GetCellByPosition = (
+  position: Position,
+  field: Field
+) => Cell | null;
 const getCellByPosition: GetCellByPosition = (position, field) => {
   if (position.row < 0 || position.column < 0) return null;
 
