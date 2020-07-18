@@ -21,7 +21,7 @@
   "dependencies": {
     "dotenv": "^8.1.0",
     "jest": "^24.9.0",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.19"
   },
   "scripts": {
     "start": "tsc && node ./dist/index.js",
