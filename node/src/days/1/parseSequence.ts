@@ -9,7 +9,6 @@ export const parseSequence: ParseSequence = (
   digitsOnly,
   parsedDigits
 ) => {
-  debugger;
   if (input.length === 0) {
     if (!parsedDigits || parsedDigits.length === 0) {
       throw new Error("Wasn't able to parse sequence");

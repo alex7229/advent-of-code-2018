@@ -7,10 +7,10 @@ type SolveFactory = (findCalibrationValue: FindCalibrationValue) => Solve;
 
 const solveFactory: SolveFactory = (findCalibrationValue) => (input) => {
   const lines = input.split("\n");
-  return lines.reduce(
-    (total, currentLine) => (total += findCalibrationValue(currentLine, false)),
-    0
-  );
+  debugger;
+  return lines.reduce((total, currentLine) => {
+    return total + findCalibrationValue(currentLine, true);
+  }, 0);
 };
 
 export default solveFactory(findCalibrationValue);

@@ -1,6 +1,6 @@
 import { parseSequence } from "../../../days/1/parseSequence";
 
-it.skip("should parse sequence value for provided strings", () => {
+it("should parse sequence value for provided strings", () => {
   expect(parseSequence("1abc2", true)).toBe("12");
   expect(parseSequence("pqr3stu8vwx", true)).toBe("38");
   expect(parseSequence("a1b2c3d4e5f", true)).toBe("12345");
