@@ -11,7 +11,6 @@ const dripAllWater: DripAllWater = (field) => {
   let waterCells: Cell[] = [springCell];
 
   while (waterCells.length > 0) {
-    debugger;
     const allWaterCells = flatten(
       waterCells.map((cell) => dripWater(cell.position, field))
     );
