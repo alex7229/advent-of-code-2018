@@ -52,7 +52,7 @@ export const parseSequence: ParseSequence = (
       matchedDigit = "9";
     }
     return parseSequence(
-      input.slice(matchedValue.length),
+      input.slice(1),
       digitsOnly,
       parsedDigits ? `${parsedDigits}${matchedDigit}` : matchedDigit
     );

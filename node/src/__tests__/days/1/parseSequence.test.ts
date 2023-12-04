@@ -9,10 +9,14 @@ it("should parse sequence value for provided strings", () => {
 
 it("should parse sequence value for provided strings, including 'one', 'two', etc", () => {
   expect(parseSequence("two1nine", false)).toBe("219");
-  expect(parseSequence("eightwothree", false)).toBe("83");
+  expect(parseSequence("eightwothree", false)).toBe("823");
   expect(parseSequence("abcone2threexyz", false)).toBe("123");
-  expect(parseSequence("xtwone3four", false)).toBe("234");
+  expect(parseSequence("xtwone3four", false)).toBe("2134");
   expect(parseSequence("4nineeightseven2", false)).toBe("49872");
-  expect(parseSequence("zoneight234", false)).toBe("1234");
+  expect(parseSequence("zoneight234", false)).toBe("18234");
   expect(parseSequence("7pqrstsixteen", false)).toBe("76");
+});
+
+it("should work with overlapping symbols", () => {
+  expect(parseSequence("5twone", false)).toBe("521");
 });
