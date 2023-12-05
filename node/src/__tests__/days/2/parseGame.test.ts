@@ -25,3 +25,10 @@ it("should parse games correctly", () => {
     ],
   });
 });
+
+it("should parse big game IDs and cube big numbers", () => {
+  expect(parseGame(`Game 102: 1006 green, 312 red, 6 blue`)).toEqual({
+    id: 102,
+    rounds: [{ red: 312, green: 1006, blue: 6 }],
+  });
+});

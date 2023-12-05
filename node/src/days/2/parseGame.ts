@@ -7,7 +7,7 @@ export type Game = { id: number; rounds: Round[] };
 export type ParseGame = (input: string) => Game;
 
 export const parseGame: ParseGame = (input) => {
-  const gameMatch = input.match(/Game (\d)+:/);
+  const gameMatch = input.match(/Game (\d+):/);
   if (gameMatch === null) {
     throw new Error(`Cannot parse ${input}`);
   }
