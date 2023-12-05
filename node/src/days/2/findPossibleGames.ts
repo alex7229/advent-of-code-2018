@@ -1,6 +1,9 @@
 import { Game, Round } from "./parseGame";
 
-type FindPossibleGames = (games: Game[], configuration: Round) => number[];
+export type FindPossibleGames = (
+  games: Game[],
+  configuration: Round
+) => number[];
 
 export const findPossibleGames: FindPossibleGames = (games, configuration) => {
   const possibleGames: number[] = [];

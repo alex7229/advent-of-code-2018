@@ -4,7 +4,7 @@ export type Round = {
   blue: number;
 };
 export type Game = { id: number; rounds: Round[] };
-type ParseGame = (input: string) => Game;
+export type ParseGame = (input: string) => Game;
 
 export const parseGame: ParseGame = (input) => {
   const gameMatch = input.match(/Game (\d)+:/);
