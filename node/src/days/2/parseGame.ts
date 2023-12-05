@@ -1,9 +1,9 @@
-type Round = {
+export type Round = {
   red: number;
   green: number;
   blue: number;
 };
-type Game = { id: number; rounds: Round[] };
+export type Game = { id: number; rounds: Round[] };
 type ParseGame = (input: string) => Game;
 
 export const parseGame: ParseGame = (input) => {
