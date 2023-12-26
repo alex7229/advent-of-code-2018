@@ -12,8 +12,9 @@ const dataPath = `${__dirname}/../src/days/${day}/input${testPrefix}.txt`;
 const solvePath = `./days/${day}/Day${day}Part${part}`;
 
 const data = fs.readFileSync(dataPath, "utf-8");
+const dataWithoutCarets = data.replace(/\r/g, "");
 // eslint-disable-next-line import/no-dynamic-require
-const answer = require(solvePath).default(data);
+const answer = require(solvePath).default(dataWithoutCarets);
 
 // eslint-disable-next-line no-console
 console.log(answer);
