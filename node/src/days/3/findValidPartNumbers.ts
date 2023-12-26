@@ -1,6 +1,6 @@
 import { Field } from "./parseField";
 
-type FindValidPartNumbers = (field: Field) => number[];
+export type FindValidPartNumbers = (field: Field) => number[];
 
 type NumberMetaData = {
   value: number;

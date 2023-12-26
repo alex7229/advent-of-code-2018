@@ -18,7 +18,7 @@ type SymbolCell = {
 };
 
 export type Field = (DigitCell | EmptyCell | SymbolCell)[][];
-type ParseField = (input: string) => Field;
+export type ParseField = (input: string) => Field;
 
 export const parseField: ParseField = (input) => {
   const field: Field = input
