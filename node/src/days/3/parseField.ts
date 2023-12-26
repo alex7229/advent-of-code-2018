@@ -23,6 +23,7 @@ export type ParseField = (input: string) => Field;
 export const parseField: ParseField = (input) => {
   const field: Field = input
     .replace(/ /g, "")
+    .replace(/\r/g, "")
     .split("\n")
     .map((row, rowIndex) =>
       row.split("").map((char, columnIndex):
