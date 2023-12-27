@@ -1,14 +1,20 @@
 import { Field } from "./parseField";
 
-export type FindValidPartNumbers = (field: Field) => number[];
-
-type NumberMetaData = {
+export type NumberMetaData = {
   value: number;
   row: number;
   column: { from: number; to: number };
 };
 
-export const findValidPartNumbers: FindValidPartNumbers = (field) => {
+export type FindValidPartNumbers = <IncludeMetadata extends boolean = false>(
+  field: Field,
+  includeMetadata?: IncludeMetadata
+) => IncludeMetadata extends true ? NumberMetaData[] : number[];
+
+export const findValidPartNumbers: FindValidPartNumbers = (
+  field,
+  includeMetadata
+) => {
   const allNumbers: NumberMetaData[] = [];
 
   field.forEach((row, rowIndex) => {
@@ -37,26 +43,27 @@ export const findValidPartNumbers: FindValidPartNumbers = (field) => {
     });
   });
 
-  return allNumbers
-    .filter((num) => {
-      let isValid = false;
-      for (let rowIndex = num.row - 1; rowIndex <= num.row + 1; rowIndex++) {
-        for (
-          let columnIndex = num.column.from - 1;
-          columnIndex <= num.column.to + 1;
-          columnIndex++
-        ) {
-          const row = field[rowIndex];
-          if (!row) continue; // out of bounds
-          const cell = row[columnIndex];
-          if (!cell) continue; // out of bounds
-          if (cell.type === "symbol") {
-            isValid = true;
-            break;
-          }
+  const validNumbers = allNumbers.filter((num) => {
+    let isValid = false;
+    for (let rowIndex = num.row - 1; rowIndex <= num.row + 1; rowIndex++) {
+      for (
+        let columnIndex = num.column.from - 1;
+        columnIndex <= num.column.to + 1;
+        columnIndex++
+      ) {
+        const row = field[rowIndex];
+        if (!row) continue; // out of bounds
+        const cell = row[columnIndex];
+        if (!cell) continue; // out of bounds
+        if (cell.type === "symbol") {
+          isValid = true;
+          break;
         }
       }
-      return isValid;
-    })
-    .map((value) => value.value);
+    }
+    return isValid;
+  });
+  return (includeMetadata
+    ? validNumbers
+    : validNumbers.map((n) => n.value)) as any;
 };
